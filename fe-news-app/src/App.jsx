@@ -1,17 +1,22 @@
-import { useState } from 'react'
 import './App.css'
-const cors = require('cors');
+import { Route, Routes } from 'react-router'
+import AllArticles from './components/AllArticles'
+import Header from './components/Header'
+
 
 function App() {
   
 
   return (
-    <>
-      
-    </>
+    <div className="app">
+      <Header />
+      <Routes>
+        <Route path='/api/articles' element={<AllArticles />} />
+      </Routes>
+    </div>
   )
 }
 
-app.use(cors());
+
 
 export default App
