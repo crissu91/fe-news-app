@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import { getAllArticles, getArticleById } from "../api";
+import { getAllArticles } from "../api";
 import { Link } from "react-router-dom"
-import SingleArticle from "./SingleArticle";
+
 
 function AllArticles() {
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(()=>{
         getAllArticles()
         .then((data)=>{
             setArticles(data)
+            setIsLoading(false)
         })
+        .catch(console.log)
     },[])
+
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
 
 
 return (

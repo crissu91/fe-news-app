@@ -5,13 +5,20 @@ import { useParams } from "react-router"
 function SingleArticle() {
     const {article_id} = useParams()
     const [article, setArticle] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(()=>{
         getArticleById(article_id)
         .then((res) =>{
             setArticle(res[0])
+            setIsLoading(false)
         })
+        .catch(console.log)
     },[])
+
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
 
     return (
         <div>
