@@ -10,3 +10,8 @@ export const getAllArticles = () => {
     })
 }
 
+export const getArticleById = (article_id) => {
+    return ncNewsApi.get(`/articles/${article_id}`).then((res)=>{
+        return res.data.articles
+    })
+}
