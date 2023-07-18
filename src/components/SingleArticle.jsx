@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getArticleById } from "../api"
 import { useParams } from "react-router"
+import CommentsByArticleId from "./CommentsByArticleId"
 
 function SingleArticle() {
     const {article_id} = useParams()
@@ -32,6 +33,7 @@ function SingleArticle() {
                 <li>Topic: {article.topic}</li>
             </ul>
                 <p>{article.body}</p>
+                <CommentsByArticleId />
         </div>
             )
     }
