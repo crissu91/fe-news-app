@@ -1,27 +1,30 @@
 import { useEffect, useState } from "react";
-import { getAllArticles } from "../api";
+import { getAllArticles, getArticleById } from "../api";
+import { Link } from "react-router-dom"
+import SingleArticle from "./SingleArticle";
 
 function AllArticles() {
     const [articles, setArticles] = useState([])
 
     useEffect(()=>{
-        getAllArticles().then((data)=>{
+        getAllArticles()
+        .then((data)=>{
             setArticles(data)
         })
     },[])
+
 
 return (
     <main>
             {articles.map((article)=>{
                 return (
-                    <section key={article.article_id} className="articles">
-                        <h2>{article.title}</h2>
-                        <img width="500px" src={`${article.article_img_url}`} alt={`image reflecting the ${article.title}`}/>
+                    <section className="articles" key={article.article_id} >
+                        <h2 className="article-title-all">{article.title}</h2>
+                        <img src={`${article.article_img_url}`} alt={`image reflecting the ${article.title}`} className="article-img"/>
                         <p>Author: {article.author}</p>
                         <p>Created at: {article.created_at}</p>
-                        <p>Votes: {article.votes}</p>
-                        <p>Comments: {article.comment_count}</p>
-                        <p>Topic: {article.topic}</p>
+                        <Link to={`/api/articles/${article.article_id}`} key={article.article_id}>
+                        <button>Read more</button></Link>
                     </section>
                 )
             })}
