@@ -16,6 +16,12 @@ export const getArticleById = (article_id) => {
     })
 }
 
+export const getCommentsByArticleId = (article_id) => {
+    return ncNewsApi.get(`/articles/${article_id}/comments`).then((res)=>{
+        return res.data.comments
+    })
+}
+
 export const patchArticleById = (article_id, inc_votes) => {
     const articlePatchBody = {
         article_id,

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getArticleById, patchArticleById } from "../api"
 import { useParams } from "react-router"
+import CommentsByArticleId from "./CommentsByArticleId"
 import Error from "./Error"
 
 function SingleArticle() {
@@ -62,6 +63,7 @@ function SingleArticle() {
             </ul>
                 <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
                 <p>{article.body}</p>
+                <CommentsByArticleId />
         </div>
             )
     }

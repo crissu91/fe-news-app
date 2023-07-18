@@ -88,7 +88,6 @@ button:hover {
 
 .single-article li {
   font-size: 18px;
-  margin-bottom: 10px;
   flex-basis: 15%;
 }
 
@@ -96,6 +95,45 @@ p {
   font-size: 20px;
   line-height: 1.5;
   margin-top: 20px;
+}
+
+.comments-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.comment li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 50px;
+}
+
+.comment-body {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.comment-author {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0px;
+}
+
+.comment-created-at {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0px;
+}
+.comment-votes {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0px;
 }
 .error {
   border: 1px solid #f00;
