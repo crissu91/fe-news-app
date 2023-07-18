@@ -1,7 +1,10 @@
 function Header() {
 
     return (
-        <h1>Northcoders News</h1>
+        <div className="header">
+            <img src="https://www.manchesterdigital.com/storage/6766/Northcoders-Primary-Logo---Red.png" alt="northcoders logo in colour red" />
+            <h1>News</h1>
+        </div>
     )
 }
 
