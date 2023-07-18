@@ -16,6 +16,10 @@ function CommentsByArticleId() {
         .catch(console.log)
     }, [])
 
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
+
     return (
         <div className="comment">
             <h2 className="comments-header">Comments:</h2>
