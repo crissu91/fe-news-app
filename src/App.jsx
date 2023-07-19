@@ -16,6 +16,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/api/articles' element={<AllArticles />} />
         <Route path='/api/articles/:article_id' element={<SingleArticle />} />
+        <Route path='*' element={<Error errorStatus={404} errorMessage={'Not found: Page does not exist'}/>}/>
       </Routes>
     </div>
   )
