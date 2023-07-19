@@ -26,11 +26,11 @@ function AllArticles() {
     if (apiError) {
         return (
             <Error 
-                errorStatus={apiError.response.status}
-                errorMessage={apiError.response.data.msg}
+                errorStatus={apiError.response?.status || '503'}
+                errorMessage={apiError.response?.data?.msg || 'Please try again'}
             />
         )
-    }
+    } 
 
 return (
     <main>
