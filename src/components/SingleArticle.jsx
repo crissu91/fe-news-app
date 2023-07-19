@@ -10,6 +10,7 @@ function SingleArticle() {
     const [isLoading, setIsLoading] = useState(true)
     const [articleVotes, setArticleVotes] = useState(0)
     const [apiError, setApiError] = useState(null)
+    const [error, setError] = useState(false)
 
     const formattedDate = new Date(article.created_at).toLocaleString();
 
@@ -29,8 +30,11 @@ function SingleArticle() {
         setArticleVotes((currentArticleVotes=>{
             return currentArticleVotes + 1;
         }))
-        patchArticleById(article_id, 1).catch((err)=>{
-            setApiError(err)
+        patchArticleById(article_id, 'a').catch((err)=>{
+            
+            if (err) {
+                setError(true)
+            }
             setArticleVotes((currentArticleVotes=>{
                 return currentArticleVotes - 1;
             }))
@@ -40,6 +44,7 @@ function SingleArticle() {
     if (isLoading) {
         return <p>Loading...</p>
     }
+    
 
     if (apiError) {
         return (
@@ -61,6 +66,7 @@ function SingleArticle() {
                 <li>Topic: {article.topic}</li>
                 <li>Votes: {article.votes + articleVotes}</li>
             </ul>
+            { error && <p style={{color: 'red'}}>Please try again</p> }
                 <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
                 <p>{article.body}</p>
                 <CommentsByArticleId />
