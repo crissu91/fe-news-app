@@ -21,3 +21,14 @@ export const getCommentsByArticleId = (article_id) => {
         return res.data.comments
     })
 }
+
+export const postCommentByArticleId = (article_id, newComment) => {
+    const postRequestBody = {
+        username: 'tickle122',
+        body: newComment
+    }
+    return ncNewsApi.post(`/articles/${article_id}/comments`, postRequestBody).then((res)=>{
+        console.log('da',res)
+        return res.data.comment[0]
+    })
+}
