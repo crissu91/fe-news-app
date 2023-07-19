@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../api";
 import { useParams } from "react-router";
+import CommentAdder from "./CommentAdder";
 
 function CommentsByArticleId() {
     const {article_id} = useParams()
@@ -23,6 +24,7 @@ function CommentsByArticleId() {
     return (
         <div className="comment">
             <h2 className="comments-header">Comments:</h2>
+            <CommentAdder setComments={setComments}/>
             {!comments.length ? <p>No comments for this article</p> : <ul>{comments.map(({comment_id, body, author, created_at, votes}) => (
                 <li key={comment_id}>
                     <p className="comment-body">{body}</p>
