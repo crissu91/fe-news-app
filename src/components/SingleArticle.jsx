@@ -44,7 +44,7 @@ function SingleArticle() {
     if (apiError) {
         return (
             <Error 
-                errorStatus={apiError.response?.status || '599'}
+                errorStatus={apiError.response?.status || '503'}
                 errorMessage={apiError.response?.data?.msg || 'Please try again'}
             />
         )
