@@ -30,15 +30,13 @@ function SingleArticle() {
         setArticleVotes((currentArticleVotes=>{
             return currentArticleVotes + 1;
         }))
-        patchArticleById(article_id, 1).catch((err)=>{
-            
-            if (err) {
+        patchArticleById(article_id, 1).catch(()=>{
                 setError(true)
-            }
-            setArticleVotes((currentArticleVotes=>{
-                return currentArticleVotes - 1;
-            }))
+                setArticleVotes((currentArticleVotes=>{
+                    return currentArticleVotes - 1;
+                }))
         })
+        setError(false)
     }
     
     if (isLoading) {
@@ -66,7 +64,7 @@ function SingleArticle() {
                 <li>Topic: {article.topic}</li>
                 <li>Votes: {article.votes + articleVotes}</li>
             </ul>
-            { error && <p style={{color: 'red'}}>Please try again</p> }
+            { error ? <p style={{color: 'red'}}>Please try again</p> : null}
                 <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
                 <p>{article.body}</p>
                 <CommentsByArticleId />
