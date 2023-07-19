@@ -30,7 +30,7 @@ function SingleArticle() {
         setArticleVotes((currentArticleVotes=>{
             return currentArticleVotes + 1;
         }))
-        patchArticleById(article_id, 'a').catch((err)=>{
+        patchArticleById(article_id, 1).catch((err)=>{
             
             if (err) {
                 setError(true)
