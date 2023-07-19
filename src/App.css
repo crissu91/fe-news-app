@@ -81,7 +81,7 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
-  border: 1px solid grey;
+  border: 1px solid #ccc;;
   border-radius: 10px;
   text-align: center;
 }
@@ -111,7 +111,7 @@ ul {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  margin: 20px 50px;
+  margin-bottom: 20px;
 }
 
 .comment-body {
@@ -134,4 +134,28 @@ ul {
   font-size: 16px;
   color: #666;
   margin-bottom: 0px;
+}
+
+.comment-adder-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.comment-adder-form button {
+  align-self: center;
+  width: 8rem;
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 150px;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
