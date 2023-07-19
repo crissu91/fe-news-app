@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Error from "./Error"
 
 
 function AllArticles() {
