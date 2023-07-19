@@ -31,3 +31,14 @@ export const patchArticleById = (article_id, inc_votes) => {
         return res
     })
 }
+
+export const postCommentByArticleId = (article_id, newComment) => {
+    const postRequestBody = {
+        username: 'tickle122',
+        body: newComment
+    }
+    return ncNewsApi.post(`/articles/${article_id}/comments`, postRequestBody).then((res)=>{
+        console.log('da',res)
+        return res.data.comment[0]
+    })
+}
