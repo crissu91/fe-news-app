@@ -35,7 +35,7 @@ function CommentsByArticleId() {
     } 
 
     return (
-        <div className="comment">
+        <section className="comment">
             <h2 className="comments-header">Comments:</h2>
             <CommentAdder setComments={setComments}/>
             {!comments.length ? <p>No comments for this article</p> : <ul>{comments.map(({comment_id, body, author, created_at, votes}) => (
@@ -47,7 +47,7 @@ function CommentsByArticleId() {
                 </li>
                 ))}
             </ul>}
-        </div>
+        </section>
     )
 }
 export default CommentsByArticleId;
