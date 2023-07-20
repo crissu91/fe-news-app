@@ -17,7 +17,7 @@ function AllTopics() {
         .catch((err) =>{
             setApiError(err)
         })
-    },[])
+    },[topics])
     
     if (isLoading) {
         return <p>Loading...</p>
