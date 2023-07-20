@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
 import { Link } from "react-router-dom";
-import Error from "./Error"
+import Error from "./Error";
+import ArticleQueries from "./ArticlesQueries";
 
 
 function AllArticles() {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [apiError, setApiError] = useState(null)
+
 
     useEffect(()=>{
         getAllArticles()
@@ -19,6 +21,7 @@ function AllArticles() {
             setApiError(err)
         })
     },[])
+
 
     if (isLoading) {
         return <p>Loading...</p>
@@ -35,19 +38,20 @@ function AllArticles() {
 
 return (
     <main>
-            {articles.map((article)=>{
-                const formattedDate = new Date(article.created_at).toLocaleString();
-                return (
-                    <section className="articles" key={article.article_id} >
-                        <h2 className="article-title-all">{article.title}</h2>
-                        <img src={`${article.article_img_url}`} alt={`image reflecting the ${article.title}`} className="article-img"/>
-                        <p>Author: {article.author}</p>
-                        <p>Created at: {formattedDate}</p>
-                        <Link to={`/api/articles/${article.article_id}`} key={article.article_id}>
-                        <button>Read more</button></Link>
-                    </section>
-                )
-            })}
+        <ArticleQueries setArticles={setArticles} />
+        {articles.map((article)=>{
+            const formattedDate = new Date(article.created_at).toLocaleString();
+            return (
+                <section className="articles" key={article.article_id} >
+                    <h2 className="article-title-all">{article.title}</h2>
+                    <img src={`${article.article_img_url}`} alt={`image reflecting the ${article.title}`} className="article-img"/>
+                    <p>Author: {article.author}</p>
+                    <p>Created at: {formattedDate}</p>
+                    <Link to={`/api/articles/${article.article_id}`} key={article.article_id}>
+                    <button>Read more</button></Link>
+                </section>
+            )
+        })}
     </main>
     )
 }
