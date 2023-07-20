@@ -17,7 +17,7 @@ function AllTopics() {
         .catch((err) =>{
             setApiError(err)
         })
-    },[topics])
+    },[])
     
     if (isLoading) {
         return <p>Loading...</p>
@@ -37,7 +37,7 @@ function AllTopics() {
             {topics.map((topic)=>{
                 return (
                     <section className="topic-section" key={topic.slug} >
-                        <Link to={`/api/articles?topic=${topic.slug}`}>
+                        <Link to={`/api/topics/${topic.slug}`}>
                             <h2 className="topic-title">{topic.slug}</h2>
                         </Link>
                         <p className="topic-description">{topic.description}</p>
