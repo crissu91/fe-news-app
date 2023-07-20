@@ -4,8 +4,8 @@ const ncNewsApi =  axios.create({
     baseURL: `https://northcoders-news-y3ly.onrender.com/api`
 })
 
-export const getAllArticles = () => {
-    return ncNewsApi.get('/articles').then((res)=>{
+export const getAllArticles = (query) => {
+    return ncNewsApi.get('/articles', {params: query}).then((res)=>{
         return res.data.articles
     })
 }
@@ -38,7 +38,12 @@ export const postCommentByArticleId = (article_id, newComment) => {
         body: newComment
     }
     return ncNewsApi.post(`/articles/${article_id}/comments`, postRequestBody).then((res)=>{
-        console.log('da',res)
         return res.data.comment[0]
+    })
+}
+
+export const getAllTopics = () => {
+    return ncNewsApi.get('/topics').then((res)=>{
+        return res.data.topics
     })
 }
