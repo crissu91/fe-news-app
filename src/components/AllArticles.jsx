@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllArticles} from "../api";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Error from "./Error"
 
 
@@ -9,12 +9,11 @@ function AllArticles() {
     const [isLoading, setIsLoading] = useState(true)
     const [apiError, setApiError] = useState(null)
 
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const searchQuery = Object.fromEntries(searchParams.entries());
+    const query = useParams()
+
 
     useEffect(()=>{
-        getAllArticles(searchQuery)
+        getAllArticles(query)
         .then((data)=>{
             setArticles(data)
             setIsLoading(false)
