@@ -9,7 +9,20 @@
   margin-top: 5rem;
   width: 40vw;
 }
-main {
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.all-articles {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,14 +30,17 @@ main {
 }
 
 .articles {
-  margin: 20px;
+  /* margin: 20px; */
+  margin: 0 20px 20px 20px;
   padding: 20px;
-  border: 1px solid black;
+  /* border: 1px solid #000; */
+  border: 1px solid #ccc;
   width: 500px;
   height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 5px;
 }
 
 .article-title-all{
@@ -38,7 +54,7 @@ main {
   margin-bottom: 5px;
 }
 
-p {
+.articles p {
   margin-bottom: 5px;
 }
 
@@ -52,7 +68,6 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 20px;
   cursor: pointer;
 }
 
@@ -90,7 +105,7 @@ button:hover {
   flex-basis: 15%;
 }
 
-p {
+.article-body {
   font-size: 20px;
   line-height: 1.5;
   margin-top: 20px;
@@ -101,7 +116,9 @@ p {
   margin-bottom: 10px;
 }
 
-ul {
+.comment ul {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   padding: 10px;
 }
@@ -162,12 +179,12 @@ ul {
   width: 8rem;
 }
 
-label {
+.comment-adder-form label {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-textarea {
+.comment-adder-form textarea {
   height: 150px;
   font-size: 18px;
   padding: 10px;
@@ -176,11 +193,14 @@ textarea {
   margin-bottom: 10px;
 }
 
-main.topics {
+.topics {
+  border: 1px solid #ccc;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .topic-section {
@@ -268,23 +288,23 @@ main.topics {
   
 }
 
-.header {
-  font-size: 2rem;
-  margin-left: 10px;
+.navbar li {
+  color: white;
+  margin-right: 20px;
+  font-size: 1.2rem;
 }
 
-ul {
+.navbar ul {
   list-style: none;
   display: flex;
   align-items: center;
   margin: 0;
 }
-
-li {
-  color: white;
-  margin-right: 20px;
-  font-size: 1.2rem;
+.header {
+  font-size: 2rem;
+  margin-left: 10px;
 }
+
 
 .search-form {
   display: flex;
@@ -336,4 +356,17 @@ li {
   font-size: 1.5rem;
   text-align: center;
   color: #666;
+}
+.search-button-nav-bar {
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.search-button-nav-bar:hover {
+  background-color: #f4b4b4;
 }
