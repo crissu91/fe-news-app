@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+
 
 function NavBar() {
+	const [_, setSearchParams] = useSearchParams()
+	const [newSearchTerm, setNewSearchTerm] = useState('');
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setSearchParams({search: newSearchTerm})
+		setNewSearchTerm("")
+	}
+
     return (
         <section>
 			<nav className="navbar">
@@ -15,9 +26,15 @@ function NavBar() {
 					<Link to="/api/topics">
 						<li>Explore topics</li>
 					</Link>
-					<form className="search-form">
+					<form className="search-form" onSubmit={handleSubmit}>
                         <label htmlFor="search"/>
-                        <input placeholder="Search articles..." id="search" type="text" name="search"></input>
+                        <input 
+						placeholder="Search articles..." 
+						id="search" 
+						type="text" 
+						name="search" 
+						value={newSearchTerm} 
+						onChange={(e) => {setNewSearchTerm(e.target.value)}}/>
                         <button className="search-button-nav-bar">Search</button>
                     </form>
 				</ul>
