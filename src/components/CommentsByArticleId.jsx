@@ -61,9 +61,8 @@ function CommentsByArticleId() {
           <p>No comments for this article</p>
         ) : (
           <ul>
-            {comments.map(({ comment_id, body, author, created_at, votes }) => (
-              <>
-                {commentDeleted === comment_id ? (
+            {comments.map(({ comment_id, body, author, created_at, votes }) => 
+                commentDeleted === comment_id ? (
                   <p className="comment-deleted">Comment deleted</p>
                 ) : (
                   <li key={comment_id}>
@@ -79,9 +78,8 @@ function CommentsByArticleId() {
                       </button>
                     ) : null}
                   </li>
-                )}
-              </>
-            ))}
+                )
+            )}
           </ul>
         )}
       </section>
