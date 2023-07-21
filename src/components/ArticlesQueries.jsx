@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { getArticlesQueries } from "../api";
 import { useSearchParams } from 'react-router-dom'
 
@@ -24,31 +23,35 @@ function ArticleQueries({setArticles}) {
         setSearchParams(newOrderParams)
     }
 
-    useEffect(() => {
-    getArticlesQueries(sortByQuery, orderQuery)
-    .then((res)=>{
-        setArticles(res)
-    })
-    },[sortByQuery, orderQuery, setArticles])
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        getArticlesQueries({sort_by: sortByQuery, order: orderQuery})
+        .then((res)=>{
+            setArticles(res)
+        })
+    }
 
 
     return (
-        <form className="sort-order-form">
+        <div className="article-queries-box">
+        <form className="sort-order-form" onSubmit={handleFormSubmit}>
             <label className="so-form-label" htmlFor="sort-by">Sort articles</label>
-            <select className="so-form-select" id="sort-by" name="sort-by" onChange={handleSortChange}>
+            <select className="so-form-select" id="sort-by" name="sort_by" onChange={handleSortChange}>
                 <option value="none">...</option>
                 <option value="created_at">Date</option>
                 <option value="comment_count">Comment count</option>
                 <option value="votes">Votes</option>
             </select>
             <p className="radio-button-title">Order</p>
-            <input type="radio" id="asc" name="answer" value="asc" checked={orderQuery === "asc"} onChange={handleOrderChange}>
+            <input type="radio" id="asc" name="order" value="asc" checked={orderQuery === "asc"} onChange={handleOrderChange}>
             </input>
             <label htmlFor="asc">Ascendent</label>
-            <input type="radio" id="desc" name="answer" value="desc" checked={orderQuery === "desc"} onChange={handleOrderChange}>
+            <input type="radio" id="desc" name="order" value="desc" checked={orderQuery === "desc"} onChange={handleOrderChange}>
             </input>
             <label htmlFor="desc">Descendent</label>
+            <button type="submit">Submit</button>
         </form>
+        </div>
     )
 }
 
