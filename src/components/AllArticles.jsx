@@ -17,8 +17,6 @@ function AllArticles() {
     const query = {...Object.fromEntries(searchParams.entries()), topic};
 
 
-console.log(query)
-
     useEffect(()=>{
         getAllArticles(query)
         .then((data)=>{
