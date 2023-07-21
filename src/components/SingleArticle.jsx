@@ -66,7 +66,7 @@ function SingleArticle() {
             </ul>
             { error ? <p style={{color: 'red'}}>Please try again</p> : null}
                 <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
-                <p>{article.body}</p>
+                <p className="article-body">{article.body}</p>
                 <CommentsByArticleId />
         </main>
             )
