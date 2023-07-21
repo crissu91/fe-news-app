@@ -11,7 +11,7 @@ export const getAllArticles = () => {
 }
 
 export const getArticlesQueries = (paramQueries)=>{
-    return ncNewsApi.get('/articles', {paramQueries}).then((res)=>{
+    return ncNewsApi.get('/articles', {params: paramQueries}).then((res)=>{
         return res.data.articles
     })
 }
