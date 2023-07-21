@@ -5,6 +5,7 @@ import Header from './components/Header'
 import SingleArticle from './components/SingleArticle'
 import HomePage from './components/HomePage'
 import AllTopics from './components/AllTopics'
+import NavBar from './components/NavBar'
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div className="app">
+      <NavBar />
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
