@@ -10,6 +10,12 @@ export const getAllArticles = (query) => {
     })
 }
 
+export const getArticlesQueries = (paramQueries)=>{
+    return ncNewsApi.get('/articles', {params: paramQueries}).then((res)=>{
+        return res.data.articles
+    })
+}
+
 export const getArticleById = (article_id) => {
     return ncNewsApi.get(`/articles/${article_id}`).then((res)=>{
         return res.data.articles
