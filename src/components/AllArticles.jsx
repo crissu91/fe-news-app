@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Error from "./Error";
 import ArticleQueries from "./ArticlesQueries";
+import AllTopics from "./AllTopics";
 
 
 function AllArticles() {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [apiError, setApiError] = useState(null)
+    const location = useLocation()
+    const { topic } = useParams()
 
-    const query = useParams()
+    const searchParams = new URLSearchParams(location.search);
+    const query = {...Object.fromEntries(searchParams.entries()), topic};
 
+
+console.log(query)
 
     useEffect(()=>{
         getAllArticles(query)
@@ -21,8 +27,9 @@ function AllArticles() {
         })
         .catch((err) =>{
             setApiError(err)
+            setIsLoading(false)
         })
-    },[])
+    },[JSON.stringify(query)])
 
 
     if (isLoading) {
@@ -40,9 +47,13 @@ function AllArticles() {
 
 
 return (
-    <main>
-        <ArticleQueries setArticles={setArticles} />
-        {articles.map((article)=>{
+    <main className="all-articles">
+        <div className="sidebar">
+        <ArticleQueries />
+        <AllTopics />
+        </div>
+        <div className="articles-container">
+        {articles?.map((article)=>{
             const formattedDate = new Date(article.created_at).toLocaleString();
             return (
                 <section className="articles" key={article.article_id} >
@@ -55,6 +66,7 @@ return (
                 </section>
             )
         })}
+        </div>
     </main>
     )
 }
