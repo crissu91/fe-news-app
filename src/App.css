@@ -206,6 +206,34 @@ main.topics {
   display: inline-block;
   margin: 10px;
 }
+
+.article-queries-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.sort-order-form {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.so-form-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.so-form-select {
+  margin-right: 10px;
+}
+
+.radio-button-title {
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 20px;
+}
 .comment-deleted {
   position: fixed;
   top: 50%;
