@@ -177,6 +177,36 @@ textarea {
   margin-bottom: 10px;
 }
 
+main.topics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topic-section {
+  width: 30%;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.topic-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.topic-description {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.explore-button {
+  display: inline-block;
+  margin: 10px;
+}
+
 .article-queries-box {
   border: 1px solid #ccc;
   padding: 20px;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Error from "./Error";
 import ArticleQueries from "./ArticlesQueries";
 
@@ -10,9 +10,11 @@ function AllArticles() {
     const [isLoading, setIsLoading] = useState(true)
     const [apiError, setApiError] = useState(null)
 
+    const query = useParams()
+
 
     useEffect(()=>{
-        getAllArticles()
+        getAllArticles(query)
         .then((data)=>{
             setArticles(data)
             setIsLoading(false)
@@ -35,6 +37,7 @@ function AllArticles() {
             />
         )
     } 
+
 
 return (
     <main>

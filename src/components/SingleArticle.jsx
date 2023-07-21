@@ -54,7 +54,7 @@ function SingleArticle() {
     } 
 
     return (
-        <div>
+        <main>
                 <h2 className="article-title">{article.title}</h2>
                 <img className="article-img-single" src={`${article.article_img_url}`} alt={`image reflecting the ${article.title}`}/>
             <ul key={article.article_id} className="single-article">
@@ -68,7 +68,7 @@ function SingleArticle() {
                 <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
                 <p>{article.body}</p>
                 <CommentsByArticleId />
-        </div>
+        </main>
             )
     }
 
