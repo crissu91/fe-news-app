@@ -16,6 +16,7 @@ function AllTopics() {
         })
         .catch((err) =>{
             setApiError(err)
+            setIsLoading(false)
         })
     },[])
     
