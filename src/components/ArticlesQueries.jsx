@@ -1,34 +1,24 @@
-import { getArticlesQueries } from "../api";
+import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 
-function ArticleQueries({setArticles}) {
-    const [searchParams, setSearchParams] = useSearchParams()
-    const sortByQuery = searchParams.get("sort_by")
-    const orderQuery = searchParams.get("order")
-
-
+function ArticleQueries() {
+    const [_, setSearchParams] = useSearchParams()
+    const [order, setOrder] = useState()
+    const [sort_by, setSort] = useState()
+    const removeUndefined = obj => JSON.parse(JSON.stringify(obj));
 
     const handleSortChange = (event) => {
-        const newSortBy = event.target.value;
-        const newSortParams = new URLSearchParams(searchParams);
-        newSortParams.set('sort_by', newSortBy)
-        setSearchParams(newSortParams)
+        setSort(event.target.value)
       }
 
     const handleOrderChange = (event) => {
-        const newOrder = event.target.value;
-        const newOrderParams = new URLSearchParams(searchParams);
-        newOrderParams.set('order', newOrder)
-        setSearchParams(newOrderParams)
+        setOrder(event.target.value)
     }
-
+    
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        getArticlesQueries({sort_by: sortByQuery, order: orderQuery})
-        .then((res)=>{
-            setArticles(res)
-        })
+        setSearchParams(removeUndefined({sort_by, order}));
     }
 
 
@@ -43,10 +33,10 @@ function ArticleQueries({setArticles}) {
                 <option value="votes">Votes</option>
             </select>
             <p className="radio-button-title">Order</p>
-            <input type="radio" id="asc" name="order" value="asc" checked={orderQuery === "asc"} onChange={handleOrderChange}>
+            <input type="radio" id="asc" name="order" value="asc" checked={order === "asc"} onChange={handleOrderChange}>
             </input>
             <label htmlFor="asc">Ascendent</label>
-            <input type="radio" id="desc" name="order" value="desc" checked={orderQuery === "desc"} onChange={handleOrderChange}>
+            <input type="radio" id="desc" name="order" value="desc" checked={order === "desc"} onChange={handleOrderChange}>
             </input>
             <label htmlFor="desc">Descendent</label>
             <button type="submit">Submit</button>

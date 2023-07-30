@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getArticleById, patchArticleById } from "../api"
 import { useParams } from "react-router"
 import CommentsByArticleId from "./CommentsByArticleId"
 import Error from "./Error"
+import UserContext from "../contexts/userContext"
 
 function SingleArticle() {
     const {article_id} = useParams()
     const [article, setArticle] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [articleVotes, setArticleVotes] = useState(0)
+    const [buttonClicked, setButtonClicked] = useState(false)
     const [apiError, setApiError] = useState(null)
     const [error, setError] = useState(false)
+    const {user} = useContext(UserContext)
 
     const formattedDate = new Date(article.created_at).toLocaleString();
 
@@ -22,12 +25,14 @@ function SingleArticle() {
         })
         .catch((err) =>{
             setApiError(err)
+            setIsLoading(false)
         })
     },[])
 
     
     function handleClick() {
         setArticleVotes((currentArticleVotes=>{
+            setButtonClicked(true)
             return currentArticleVotes + 1;
         }))
         patchArticleById(article_id, 1).catch(()=>{
@@ -65,8 +70,8 @@ function SingleArticle() {
                 <li>Votes: {article.votes + articleVotes}</li>
             </ul>
             { error ? <p style={{color: 'red'}}>Please try again</p> : null}
-                <button aria-label="vote this comment" onClick={handleClick}>Vote article</button>
-                <p>{article.body}</p>
+                <button aria-label="vote this comment" disabled={buttonClicked || !user} onClick={handleClick}>Vote article</button>
+                <p className="article-body">{article.body}</p>
                 <CommentsByArticleId />
         </main>
             )

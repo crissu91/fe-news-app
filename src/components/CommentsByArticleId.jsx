@@ -12,6 +12,7 @@ function CommentsByArticleId() {
     const [apiError, setApiError] = useState(null)
     const { user } = useContext(UserContext)
     const [commentDeleted, setCommentDeleted] = useState(null)
+    const formattedDate = date => new Date(date).toLocaleString();
 
     useEffect(()=>{
         getCommentsByArticleId(article_id)
@@ -46,8 +47,8 @@ function CommentsByArticleId() {
     if (apiError) {
         return (
             <Error 
-                errorStatus={apiError.response?.status || '503'}
-                errorMessage={apiError.response?.data?.msg || 'Please try again'}
+                errorStatus={apiError.response?.status}
+                errorMessage={apiError.response?.data?.msg || 'Oops! Something went wrong. Please try again'}
             />
         )
     } 
@@ -61,16 +62,15 @@ function CommentsByArticleId() {
           <p>No comments for this article</p>
         ) : (
           <ul>
-            {comments.map(({ comment_id, body, author, created_at, votes }) => (
-              <>
-                {commentDeleted === comment_id ? (
-                  <p className="comment-deleted">Comment deleted</p>
+            {comments.map(({ comment_id, body, author, created_at, votes }) => 
+                commentDeleted === comment_id ? (
+                  <p className="comment-deleted" key={comment_id}>Comment deleted</p>
                 ) : (
                   <li key={comment_id}>
                     <p className="comment-body">{body}</p>
                     <p className="comment-author">Author: {author}</p>
                     <p className="comment-created-at">
-                      Created at: {created_at}
+                      Created at: {formattedDate(created_at)}
                     </p>
                     <p className="comment-votes">Votes: {votes}</p>
                     {user === author ? (
@@ -79,9 +79,8 @@ function CommentsByArticleId() {
                       </button>
                     ) : null}
                   </li>
-                )}
-              </>
-            ))}
+                )
+            )}
           </ul>
         )}
       </section>

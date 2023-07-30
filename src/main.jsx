@@ -6,10 +6,10 @@ import { UserProvider } from './contexts/userContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <React.StrictMode>
-  <UserProvider>
-    <App />
-  </UserProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </React.StrictMode>
   </BrowserRouter>
 )
