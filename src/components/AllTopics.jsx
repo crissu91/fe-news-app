@@ -15,7 +15,8 @@ function AllTopics() {
             setIsLoading(false)
         })
         .catch((err) =>{
-            setApiError(err)
+            console.log(err);
+            setApiError(true)
             setIsLoading(false)
         })
     },[])
@@ -27,21 +28,20 @@ function AllTopics() {
     if (apiError) {
         return (
             <Error 
-                errorStatus={apiError.response?.status || '503'}
-                errorMessage={apiError.response?.data?.msg || 'Please try again'}
+                errorStatus={apiError.response?.status}
+                errorMessage={apiError.response?.data?.msg || 'Oops! Something went wrong. Please try again'}
             />
         )
     }
     return (
         <main className="topics">
-            <p>Click on a topic to explore articles</p>
+            <h3>Click on a topic to explore articles:</h3>
             {topics.map((topic)=>{
                 return (
                     <section className="topic-section" key={topic.slug} >
                         <Link to={`/api/topics/${topic.slug}`}>
-                            <h2 className="topic-title">{topic.slug}</h2>
+                            <h4 className="topic-title">{topic.slug}</h4>
                         </Link>
-                        <p className="topic-description">{topic.description}</p>
                     </section>
                 )
             })}
